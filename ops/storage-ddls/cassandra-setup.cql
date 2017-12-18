@@ -12,6 +12,7 @@ DROP MATERIALIZED VIEW IF EXISTS populartopics;
 DROP MATERIALIZED VIEW IF EXISTS eventplacesbysource;
 DROP INDEX IF EXISTS events_fulltext_idx;
 
+DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS watchlist;
 DROP TABLE IF EXISTS blacklist;
 DROP TABLE IF EXISTS sitesettings;
@@ -72,6 +73,12 @@ CREATE TYPE features (
 /**************************************
  * Tables
  *************************************/
+
+CREATE TABLE users(
+    identifier text,
+    role text,
+    PRIMARY KEY ((identifier, role))
+);
 
 CREATE TABLE watchlist(
     topicid uuid,
