@@ -15,6 +15,7 @@ import { hasChanged } from './shared';
 import 'react-grid-layout/css/styles.css';
 import '../../styles/Insights/Dashboard.css';
 import HeatmapToggle from './HeatmapToggle';
+import MapBoundingReset from './MapBoundingReset';
 import ShareButton from './ShareButton';
 import LanguagePicker from './LanguagePicker';
 
