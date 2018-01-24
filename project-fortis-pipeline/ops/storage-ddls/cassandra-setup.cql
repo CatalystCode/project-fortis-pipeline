@@ -1,44 +1,46 @@
 DROP KEYSPACE IF EXISTS fortis;
-CREATE KEYSPACE fortis WITH replication = {
-    'class': 'SimpleStrategy',
-    'replication_factor': 3
-};
+CREATE KEYSPACE fortis WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
 
-// *****************************************************************************
-// * Down migration
-// *****************************************************************************
+USE fortis;
 
-DROP MATERIALIZED VIEW IF EXISTS fortis.eventbatches;
-DROP MATERIALIZED VIEW IF EXISTS fortis.popularsources;
-DROP MATERIALIZED VIEW IF EXISTS fortis.populartopics;
-DROP MATERIALIZED VIEW IF EXISTS fortis.eventplacesbysource;
-DROP INDEX IF EXISTS fortis.events_fulltext_idx;
+/******************************************************************************
+ * Down migration
+ *****************************************************************************/
+DROP MATERIALIZED VIEW IF EXISTS eventbatches;
+DROP MATERIALIZED VIEW IF EXISTS popularsources;
+DROP MATERIALIZED VIEW IF EXISTS populartopics;
+DROP MATERIALIZED VIEW IF EXISTS eventplacesbysource;
+DROP INDEX IF EXISTS events_fulltext_idx;
 
-DROP TABLE IF EXISTS fortis.users;
-DROP TABLE IF EXISTS fortis.watchlist;
-DROP TABLE IF EXISTS fortis.blacklist;
-DROP TABLE IF EXISTS fortis.sitesettings;
-DROP TABLE IF EXISTS fortis.streams;
-DROP TABLE IF EXISTS fortis.trustedsources;
-DROP TABLE IF EXISTS fortis.conjunctivetopics;
-DROP TABLE IF EXISTS fortis.computedtiles;
-DROP TABLE IF EXISTS fortis.heatmap;
-DROP TABLE IF EXISTS fortis.popularplaces;
-DROP TABLE IF EXISTS fortis.eventplaces;
-DROP TABLE IF EXISTS fortis.events;
-DROP TABLE IF EXISTS fortis.computedtrends;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS watchlist;
+DROP TABLE IF EXISTS blacklist;
+DROP TABLE IF EXISTS sitesettings;
+DROP TABLE IF EXISTS streams;
+DROP TABLE IF EXISTS trustedsources;
+DROP TABLE IF EXISTS conjunctivetopics;
+DROP TABLE IF EXISTS computedtiles;
+DROP TABLE IF EXISTS heatmap;
+DROP TABLE IF EXISTS popularplaces;
+DROP TABLE IF EXISTS eventplaces;
+DROP TABLE IF EXISTS events;
+DROP TABLE IF EXISTS computedtrends;
 
-DROP TYPE IF EXISTS fortis.features;
-DROP TYPE IF EXISTS fortis.computedgender;
-DROP TYPE IF EXISTS fortis.sentiment;
-DROP TYPE IF EXISTS fortis.computedentities;
-DROP TYPE IF EXISTS fortis.place;
+DROP TYPE IF EXISTS features;
+DROP TYPE IF EXISTS computedgender;
+DROP TYPE IF EXISTS sentiment;
+DROP TYPE IF EXISTS computedentities;
+DROP TYPE IF EXISTS place;
 
-// *****************************************************************************
-// * Types
-// *****************************************************************************
+/******************************************************************************
+ * Up migration
+ *****************************************************************************/
 
-CREATE TYPE fortis.computedgender (
+/**************************************
+ * Types
+ *************************************/
+
+CREATE TYPE computedgender (
     male_mentions bigint,
     female_mentions bigint
 );
@@ -78,7 +80,17 @@ CREATE TABLE fortis.users(
     PRIMARY KEY ((identifier, role))
 );
 
+<<<<<<< HEAD:project-fortis-pipeline/ops/storage-ddls/cassandra-setup.cql
 CREATE TABLE fortis.watchlist(
+=======
+CREATE TABLE users(
+    identifier text,
+    role text,
+    PRIMARY KEY ((identifier, role))
+);
+
+CREATE TABLE watchlist(
+>>>>>>> 4016f353b70107e051476ced777740874b511b15:ops/storage-ddls/cassandra-setup.cql
     topicid uuid,
     topic text,
     lang_code text,
