@@ -1,4 +1,10 @@
-# project-fortis
+**This repository is outdated and was migrated to [project-fortis](https://github.com/CatalystCode/project-fortis).**
+
+----
+----
+---
+
+[![Travis CI status](https://api.travis-ci.org/CatalystCode/project-fortis-pipeline.svg?branch=master)](https://travis-ci.org/CatalystCode/project-fortis-pipeline)
 
 [![Travis CI status](https://api.travis-ci.org/CatalystCode/project-fortis.svg?branch=master)](https://travis-ci.org/CatalystCode/project-fortis)
 
